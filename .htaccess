@@ -1,3 +1,10 @@
-RewriteEngine on
-RewriteRule ^$ /public/ [L]
-RewriteRule (.*) /public/$1 [L]
+SetEnvIf Request_URI ^/api noauth=1
+
+Allow from env=noauth
+Deny from all
+Satisfy any
+
+AuthType Basic
+AuthName "View Statistics"
+AuthUserFile C:/xampp/htdocs/Webanalyzer/.htpasswd
+Require valid-user
