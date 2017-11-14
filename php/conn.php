@@ -19,7 +19,7 @@ class Connector {
     * Loads database information from the file db.config into the object
     **/
     function __construct() {
-        $handle = fopen("db.config", "r");
+        $handle = fopen("php/db.config", "r");
         if ($handle) {
 
             while ( $line = fgets($handle) ) {

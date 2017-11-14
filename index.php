@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+    require_once "php/functions.php";
+    require_once "php/formhandler.php";
+?>    
 <html lang="en">
 
   <head>
@@ -19,11 +22,6 @@
   </head>
 
   <body>
-  <?php
-    //$database = new Connector;
-    //$database->getBlacklistedURLs;  
-  ?>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
@@ -57,18 +55,14 @@
     <!-- Page Content -->
     <div class="container">
       <h1 class="mt-5">Blacklist</h1>
-      <form id="blacklist" class="form">
+      <form id="blacklist" class="form" method="post">
         <?php
-          foreach(item as $item) {
-            if ($item.isBlacklist) {
-              echo '<label>$item.url<input class="form-control" type="checkbox" name="$item.url" value="$item.url" checked></label>';
-            }
-            else {
-              echo '<label>$item.url<input class="form-control" type="checkbox" name="$item.url" value="$item.url"></label>';
-            }
-          }
+          createUrlList();
         ?>
-        <label>Write down a url u want to add to the blacklist.</label><input class="form-control" type="url"></input>
+        <label>Write down a url u want to add to the blacklist.</label>
+        <div id="inputs"><p><input class="form-control" type="url"  name="url0" id="url0" /></p></div>
+        <p><input type="button" name="addInput" id="addInput" class="btn btn-info" value="Add another URL" /></p>
+        <p><input type="submit" id="submit" class="btn btn-success" value="Submit" /></p>
       </form>
     </div>
     <!-- /.container -->
@@ -76,8 +70,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/getJSON.js"></script>
-
+    <script src="js/generateInput.js"></script>
   </body>
 
 </html>
