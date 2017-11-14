@@ -20,7 +20,7 @@ if (isset($_SESSION['oldUrl']))
 if ($url != $oldUrl)
 {
 	$connector = new Connector;
-	$connector->saveCall($url)
+	$connector->saveCall($url);
 	// Set new url as old url for the next call
 	$_SESSION['oldUrl'] = $url;
 }
