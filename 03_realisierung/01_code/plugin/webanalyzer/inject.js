@@ -5,7 +5,7 @@ chrome.storage.local.get(null, function(items) {
 	for (var i = 0; i < allKeys.length; i++)
 	{
 		// Alle Serveradressen
-		var adress = allKeys[i] + "/ajaxhandler.php";
+		var adress = allKeys[i] + "/ajaxHandler.php";
 		chrome.runtime.sendMessage({
 			method: 'POST',
 			action: 'xhttp',
