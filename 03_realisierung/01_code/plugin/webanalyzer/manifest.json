@@ -1,0 +1,23 @@
+{
+	"manifest_version": 2,
+    "name": "Webanalyzer",
+    "version": "1.0",
+    "description": "Das Webanalyzer Plugin wird dazu verwendet um Webseitenurls anonym an den Server zu schicken.",
+    "permissions": ["storage", "tabs", "http://*/*", "https://*/*"],
+	"browser_action": {
+		"default_icon": "icon16.png",
+		"default_popup": "plugin.html",
+		"default_title": "Konfiguration"
+	  },
+    "content_scripts" : [{
+        "matches" : [ "<all_urls>"],
+        "js" : ["inject.js"],
+		"run_at": "document_start"
+    }],
+	"background": {
+		"scripts": [ "jquery-3.2.1.min.js", "background.js" ]
+	},
+	"icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" }
+}
