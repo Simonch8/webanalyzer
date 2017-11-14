@@ -100,6 +100,7 @@ class Connector {
     /**
     * Returns boolean if the url already exists in the database
     * @param $url -> domain name (E.g. www.gibb.ch)
+    * @return $result -> true/false
     **/
     public function urlExists( $url ) {
         $result = false;
@@ -119,6 +120,7 @@ class Connector {
     /**
     * Saves a new domain
     * @param $url -> domain name (E.g. www.gibb.ch)
+    * @param $isBlacklisted -> 1=blacklisted; 0=not blacklisted
     **/
     public function saveUrl( $url, $isBlacklisted ) {
         $query = "INSERT INTO `urls` (`url`, `isBlacklist`) VALUES ('$url', '$isBlacklisted')";
@@ -130,7 +132,39 @@ class Connector {
     * @param $url -> domain name (E.g. www.gibb.ch)
     **/
     public function saveCall( $url ) {
+        $urlID;
+        $selectQuery = "SELECT id_url FROM urls WHERE url LIKE '$url'";
 
+        //Create entry for url if it doesn't exist
+        if( !$this->urlExists( $url ) ) {
+            $this->saveUrl( $url, 0 );
+        }
+
+        $selectData = $this->conn->query( $selectQuery );
+        if( $row = $selectData->fetch_assoc() ) {
+            $urlID = $row['id_url'];
+            $saveQuery = "INSERT INTO `calls` ( `fk_url` ) VALUES ( $urlID )";
+            $this->conn->query( $saveQuery );
+        }
+        $selectData->free();
+
+    }
+
+    /**
+    * get all blacklisted urls
+    * @return $result = JSON array of urls[id_url, url]
+    **/
+    public function selectAllBlacklistedURL() {
+        $result = array();
+        $query = "SELECT id_url, url FROM urls WHERE isBlacklist LIKE 1";
+        $data = $this->conn->query( $query );
+
+        while( $row = $data->fetch_assoc() ) {
+            array_push( $result, $row );
+        }
+        $data->close();
+
+        return $result;
     }
 
     /**
