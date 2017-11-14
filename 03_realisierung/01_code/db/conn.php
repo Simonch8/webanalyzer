@@ -171,16 +171,24 @@ class Connector {
     * Registers an existing URL as blacklisted
     * @param $url -> domain name (E.g. www.gibb.ch)
     **/
-    public function addAsBlacklist( $url ) {
+    public function addToBlacklist( $url ) {
+        $query = "UPDATE `urls` SET `isBlacklist`= 1 WHERE `url` LIKE '$url'";
 
+        if( $this->urlExists($url) ) {
+            $this->conn->query( $query );
+        }
     }
 
     /**
     * Invokes the blacklisted status from an URL
     * @param $url -> domain name (E.g. www.gibb.ch)
     **/
-    public function deleteFromBlacklist( $url ) {
+    public function removeFromBlacklist( $url ) {
+        $query = "UPDATE `urls` SET `isBlacklist`= 0 WHERE `url` LIKE '$url'";
 
+        if( $this->urlExists($url) ) {
+            $this->conn->query( $query );
+        }
     }
 
 
