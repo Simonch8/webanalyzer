@@ -1,7 +1,7 @@
 <?php
     require_once "php/functions.php";
     require_once "php/formhandler.php";
-?>    
+?>
 <html lang="en">
 
   <head>
@@ -19,14 +19,16 @@
     <!-- Custom styles for this template -->
     <link href="css/logo-nav.css" rel="stylesheet">
 
+    <script src="js/Chart.bundle.min.js"></script>
+
   </head>
 
   <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">
-          <img src="http://placehold.it/300x60?text=Logo" width="150" height="30" alt="">
+        <a class="navbar-brand" href="index.php">
+          <img src="img/logo.png" height="70" alt="Webanalyzer">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -34,15 +36,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
+              <a class="nav-link" href="#">Statistics</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
+              <a class="nav-link" href="blacklist.php">Blacklist</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
@@ -54,16 +54,10 @@
 
     <!-- Page Content -->
     <div class="container">
-      <h1 class="mt-5">Blacklist</h1>
-      <form id="blacklist" class="form" method="post">
-        <?php
-          createUrlList();
-        ?>
-        <label>Write down a url u want to add to the blacklist.</label>
-        <div id="inputs"><p><input class="form-control" type="text" pattern="[A-Za-z0-9\-*]+\.[a-z]{2,3}$" name="url0" id="url0" /></p></div>
-        <p><input type="button" name="addInput" id="addInput" class="btn btn-info" value="Add another URL" /></p>
-        <p><input type="submit" id="submit" class="btn btn-success" value="Submit" /></p>
-      </form>
+      <h1 class="mt-5">Statistics</h1>
+      <div id="statistic-1">
+          <p id="statistic-1-title"></p>
+      </div>
     </div>
     <!-- /.container -->
 
