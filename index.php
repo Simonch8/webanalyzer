@@ -56,7 +56,9 @@
     <div class="container">
       <h1 class="mt-5">Statistics</h1>
       <div id="statistic-1">
-          <p id="statistic-1-title"></p>
+          <h3 id="statistic-1-title">adasf</h3>
+          
+          <canvas id="statistic-1-canvas"></canvas>
       </div>
     </div>
     <!-- /.container -->
@@ -64,7 +66,7 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/generateInput.js"></script>
+    <script src="js/statistics.js"></script>
   </body>
 
 </html>
