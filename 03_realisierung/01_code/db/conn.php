@@ -135,19 +135,41 @@ class Connector {
         $urlID;
         $selectQuery = "SELECT id_url FROM urls WHERE url LIKE '$url'";
 
-        //Create entry for url if it doesn't exist
-        if( !$this->urlExists( $url ) ) {
-            $this->saveUrl( $url, 0 );
+        if( !$this->isOnBlacklist($url) ) {
+
+            //Create entry for url if it doesn't exist
+            if( !$this->urlExists($url) ) {
+                $this->saveUrl( $url, 0 );
+            }
+
+            $selectData = $this->conn->query( $selectQuery );
+            if( $row = $selectData->fetch_assoc() ) {
+
+                $urlID = $row['id_url'];
+                $saveQuery = "INSERT INTO `calls` ( `fk_url` ) VALUES ( $urlID )";
+                $this->conn->query( $saveQuery );
+            }
+            $selectData->free();
+        }
+    }
+
+    /**
+    * Checks if the given url is on the blacklist or not
+    * @param $url -> domain name (E.g. www.gibb.ch)
+    * @return $result -> true/false
+    **/
+    public function isOnBlacklist( $url ) {
+        $result = false;
+        $query = "SELECT * FROM urls WHERE url LIKE 'google.ch'";
+        $data = $this->conn->query( $query );
+
+        if( $row = $data->fetch_assoc() ) {
+            if( $row['isBlacklist'] == 1 ) {
+                $result = true;
+            }
         }
 
-        $selectData = $this->conn->query( $selectQuery );
-        if( $row = $selectData->fetch_assoc() ) {
-            $urlID = $row['id_url'];
-            $saveQuery = "INSERT INTO `calls` ( `fk_url` ) VALUES ( $urlID )";
-            $this->conn->query( $saveQuery );
-        }
-        $selectData->free();
-
+        return $result;
     }
 
     /**

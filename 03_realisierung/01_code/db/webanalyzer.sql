@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 14. Nov 2017 um 13:16
+-- Erstellungszeit: 14. Nov 2017 um 15:39
 -- Server-Version: 10.1.22-MariaDB
 -- PHP-Version: 7.1.4
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `calls` (
   `id_call` int(11) NOT NULL,
   `fk_url` int(11) NOT NULL,
-  `timestamp` datetime NOT NULL
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -40,7 +40,16 @@ CREATE TABLE `calls` (
 
 INSERT INTO `calls` (`id_call`, `fk_url`, `timestamp`) VALUES
 (1, 1, '2017-11-04 00:00:00'),
-(2, 1, '2017-11-07 00:00:00');
+(2, 1, '2017-11-07 00:00:00'),
+(3, 1, '2017-11-14 13:43:57'),
+(4, 1, '2017-11-14 13:44:01'),
+(5, 1, '2017-11-14 13:58:59'),
+(6, 4, '2017-11-14 14:11:32'),
+(7, 4, '2017-11-14 14:11:35'),
+(8, 4, '2017-11-14 14:12:02'),
+(9, 5, '2017-11-14 14:12:17'),
+(10, 2, '2017-11-14 14:50:12'),
+(11, 2, '2017-11-14 14:50:13');
 
 -- --------------------------------------------------------
 
@@ -60,7 +69,9 @@ CREATE TABLE `urls` (
 
 INSERT INTO `urls` (`id_url`, `url`, `isBlacklist`) VALUES
 (1, 'google.ch', 0),
-(2, 'digitec.ch', 0);
+(2, 'digitec.ch', 0),
+(4, 'jaflisdf.ch', 0),
+(5, 'oiioie.ch', 0);
 
 --
 -- Indizes der exportierten Tabellen
@@ -86,12 +97,12 @@ ALTER TABLE `urls`
 -- AUTO_INCREMENT für Tabelle `calls`
 --
 ALTER TABLE `calls`
-  MODIFY `id_call` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_call` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT für Tabelle `urls`
 --
 ALTER TABLE `urls`
-  MODIFY `id_url` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
+  MODIFY `id_url` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
