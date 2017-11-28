@@ -8,3 +8,8 @@ AuthType Basic
 AuthName "View Statistics"
 AuthUserFile C:/xampp/htdocs/Webanalyzer/.htpasswd
 Require valid-user
+
+<Files ~ "\.config$">
+    Order allow,deny
+    Deny from all
+</Files>
