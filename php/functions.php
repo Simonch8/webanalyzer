@@ -3,13 +3,13 @@
 
 	function createUrlList() {
 		$db =  new Connector;
-		$calls = $db->selectAllCalls();
+		$calls = $db->selectAllURL();
 		foreach($calls as $item) {
 			if ($item['isBlacklist'] == 1) {
-		  		echo '<p><input class="form-control" type="checkbox" id="'.$item['url'].'" name="'.$item['url'].'" value="'.$item['url'].'" checked /><label for="'.$item['url'].'"><span></span>'.$item['url'].'</label></p>';
+		  		echo '<p><input type="hidden" value="unselected" name="'.$item['url'].'"><input class="form-control" type="checkbox" id="'.$item['url'].'" name="'.$item['url'].'" value="selected" checked /><label for="'.$item['url'].'"><span></span>'.$item['url'].'</label></p>';
 			}
 			else {
-		  		echo '<p><input class="form-control" type="checkbox" id="'.$item['url'].'" name="'.$item['url'].'" value="'.$item['url'].'" /><label for="'.$item['url'].'"><span></span>'.$item['url'].'</label></p>';
+		  		echo '<p><input type="hidden" value="unselected" name="'.$item['url'].'"><input class="form-control" type="checkbox" id="'.$item['url'].'" name="'.$item['url'].'" value="selected" /><label for="'.$item['url'].'"><span></span>'.$item['url'].'</label></p>';
 			}
 		}
 	}
