@@ -19,7 +19,7 @@ class Connector {
     * Loads database information from the file db.config into the object
     **/
     function __construct() {
-        $handle = fopen("php/db.config", "r");
+        $handle = fopen("db.config", "r");
         if ($handle) {
 
             while ( $line = fgets($handle) ) {
@@ -181,8 +181,7 @@ class Connector {
         $data = $this->conn->query( $query );
 
         if( $row = $data->fetch_assoc() ) {
-            if( $row['isBlacklist'] == 1 ) {
-                var_dump($row['isBlacklist']);
+            if( $row['isBlacklist'] === 1 ) {
                 $result = true;
             }
         }
@@ -257,6 +256,27 @@ class Connector {
         }
     }
 
+    public function getMostVisited() {
+        $result = array();
+        $urls = array();
+        $queryUrl = "SELECT url FROM urls WHERE isBlacklist NOT LIKE 1";
+        $dataUrl = $this->conn->query( $queryUrl );
+        while( $row = $dataUrl->fetch_assoc() ) {
+            array_push( $urls, $row );
+        }
+
+        foreach ($urls as $key => $value) {
+            $url = $value['url'];
+            $queryCount = "SELECT COUNT(c.id_call) AS '$url' FROM calls c JOIN urls u ON (u.id_url = c.fk_url) WHERE url = '$url'";
+            $dataCount = $this->conn->query( $queryCount );
+
+            $value = $dataCount->fetch_assoc()[ $url ];
+
+            $result[ $url ] = $value;
+        }
+
+        return $result;
+    }
 
 }
 ?>
