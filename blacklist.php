@@ -36,14 +36,8 @@
             <li class="nav-item">
               <a class="nav-link" href="index.php">Statistics</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
             <li class="nav-item active">
               <a class="nav-link" href="#">Blacklist</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
         </div>

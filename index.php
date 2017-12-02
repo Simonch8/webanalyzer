@@ -39,13 +39,7 @@
               <a class="nav-link" href="#">Statistics</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="blacklist.php">Blacklist</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
             </li>
           </ul>
         </div>
@@ -56,8 +50,6 @@
     <div class="container">
       <h1 class="mt-5">Statistics</h1>
       <div id="statistic-1">
-          <h3 id="statistic-1-title">adasf</h3>
-          
           <canvas id="statistic-1-canvas"></canvas>
       </div>
     </div>
