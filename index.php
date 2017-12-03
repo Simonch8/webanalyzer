@@ -50,6 +50,7 @@
     <div class="container">
       <h1 class="mt-5">Statistics</h1>
       <div id="statistic-1">
+          <h3>Overview of all visited websites</h3>
           <canvas id="statistic-1-canvas"></canvas>
       </div>
     </div>

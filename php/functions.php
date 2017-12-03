@@ -1,8 +1,8 @@
 <?php
-	require_once "conn.php";
+	require_once("conn.php");
 
 	function createUrlList() {
-		$db =  new Connector;
+		$db =  new Connector("php/db.config");
 		$calls = $db->selectAllURL();
 		foreach($calls as $item) {
 			if ($item['isBlacklist'] == 1) {
@@ -13,4 +13,4 @@
 			}
 		}
 	}
-?>	
+?>

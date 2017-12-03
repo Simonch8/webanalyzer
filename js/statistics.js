@@ -25,40 +25,50 @@ function fillChart( id, type ) {
 
 }
 
+function getRandomColour() {
+    var letters = '0123456789ABCDEF'.split('');
+    var colour = '#';
+    for (var i = 0; i < 6; i++ ) {
+        colour += letters[Math.floor(Math.random() * 16)];
+    }
+    return colour+"66";
+}
+
+function createColourArray( arr ) {
+    var colours = new Array;
+    $.each( arr, function() {
+        colours.push( getRandomColour() );
+    });
+    console.log(colours);
+    return colours;
+}
+
 function buildChart( id, type, urls, values ) {
-    var ctx = document.getElementById(id).getContext('2d');
+    var id = document.getElementById(id),
+        ctx = id.getContext('2d'),
+        colours = createColourArray( urls );
+
+    id.height = urls.length*20;
+
 
     var myChart = new Chart(ctx, {
         type: type,
         data: {
             labels: urls,
             datasets: [{
-                label: 'Most Visited Sites',
+                label: 'Times Visited',
                 data: values,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
+                backgroundColor: colours,
+                borderColor: colours
             }]
         },
         options: {
             scales: {
-                yAxes: [{
+                xAxes: [{
+                    position: 'top',
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero:true,
+                        stepSize: 1
                     }
                 }]
             }

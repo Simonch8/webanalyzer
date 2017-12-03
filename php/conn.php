@@ -17,12 +17,13 @@ class Connector {
     /**
     * Constructor
     * Loads database information from the file db.config into the object
+    * @param $path -> path to the db.config file
     **/
-    function __construct() {
-        $handle = fopen("db.config", "r");
-        if ($handle) {
+    function __construct( $path ) {
+        $handle = fopen($path, "r" );
+        if( $handle ) {
 
-            while ( $line = fgets($handle) ) {
+            while( $line = fgets($handle) ) {
                 $line = substr($line, 0, -2);
                 $split = explode( "#:#", $line );
 

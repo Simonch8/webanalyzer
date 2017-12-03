@@ -1,7 +1,7 @@
 <?php
 require_once("conn.php");
 
-$conn = new Connector;
+$conn = new Connector("db.config");
 
 $result = $conn->getMostVisited();
 

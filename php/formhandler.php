@@ -2,8 +2,8 @@
 	require_once "conn.php";
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		
-		$db =  new Connector;
+
+		$db =  new Connector("php/db.config");
 		$url = $db->selectAllURL();
 		$i = 0;
 
