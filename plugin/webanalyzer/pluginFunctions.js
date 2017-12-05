@@ -1,3 +1,8 @@
+/**
+*@author Simon Chiarot
+*@version 1.0
+*@date 05.12.2017
+**/
 function reloadLoadList()
 {
 	document.getElementById('adressList').innerHTML = "";
