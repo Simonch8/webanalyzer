@@ -257,25 +257,17 @@ class Connector {
         }
     }
 
+    /**
+    * Gets all visited sites with the times it was called
+    **/
     public function getMostVisited() {
         $result = array();
-        $urls = array();
-        $queryUrl = "SELECT url FROM urls WHERE isBlacklist NOT LIKE 1";
-        $dataUrl = $this->conn->query( $queryUrl );
-        while( $row = $dataUrl->fetch_assoc() ) {
-            array_push( $urls, $row );
+
+        $query = "SELECT u.url, COUNT(c.fk_url) AS calls FROM urls u JOIN calls c ON ( u.id_url = c.fk_url ) GROUP BY c.fk_url ORDER BY calls DESC";
+        $data = $this->conn->query($query);
+        while( $row = $data->fetch_assoc() ) {
+            array_push( $result, $row );
         }
-
-        foreach ($urls as $key => $value) {
-            $url = $value['url'];
-            $queryCount = "SELECT COUNT(c.id_call) AS '$url' FROM calls c JOIN urls u ON (u.id_url = c.fk_url) WHERE url = '$url'";
-            $dataCount = $this->conn->query( $queryCount );
-
-            $value = $dataCount->fetch_assoc()[ $url ];
-
-            $result[ $url ] = $value;
-        }
-
         return $result;
     }
 
