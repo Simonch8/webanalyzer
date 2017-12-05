@@ -4,7 +4,7 @@ session_id(str_replace(array('.', ':'), array('-', '-'), $_SERVER["REMOTE_ADDR"]
 session_start();
 
 // Includes functions
-require_once "conn.php";
+require_once "php/conn.php";
 
 // Store POST Variable in simple local variable and initialize new variable "oldUrl"
 $url = $_POST['url'];
@@ -19,7 +19,7 @@ if (isset($_SESSION['oldUrl']))
 // If new url is not the same as old url, the call is valid (Prevent spam trough page reload on the client side)
 if ($url != $oldUrl)
 {
-	$connector = new Connector;
+	$connector = new Connector("php/db.config");
 	$connector->saveCall($url);
 	// Set new url as old url for the next call
 	$_SESSION['oldUrl'] = $url;
