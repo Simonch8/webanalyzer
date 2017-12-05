@@ -51,6 +51,8 @@
       <h1 class="mt-5">Statistics</h1>
       <div id="statistic-1">
           <h3>Overview of all visited websites</h3>
+          <label for="counter">How many pages should be displayed?</label>
+          <input id="counter" class="form-control" type="number" min="5" value="10"></input>
           <canvas id="statistic-1-canvas"></canvas>
       </div>
     </div>
