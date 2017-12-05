@@ -1,3 +1,9 @@
+/**
+*@author Simon Chiarot
+*@version 1.0
+*@date 05.12.2017
+**/
+// Redirects Ajax calls to ensure, that https to http is possible
 chrome.runtime.onMessage.addListener(function(request, sender, callback) {
   if (request.action == "xhttp") {
 
