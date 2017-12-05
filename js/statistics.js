@@ -2,14 +2,15 @@ var myChart;
 
 //Excecutes when the window finished loading
 $(window).ready( function() {
+    var elem = $("#counter"),
+        val = ( elem.val() >= 5 )? elem.val() : 5;
+
     //fills the first chart with the 10 most visited sites
-    fillChart("statistic-1-canvas", "horizontalBar", 10);
+    fillChart("statistic-1-canvas", "horizontalBar", val);
 
     //Change event for the input dom for the displayed pages
     $("#counter").on( 'change', function() {
-        var elem = $("#counter"),
-            val = elem.val();
-
+        val = ( elem.val() >= 5 )? elem.val() : 5;
         if( val !== "" ) {
             fillChart("statistic-1-canvas", "horizontalBar", val);
         }
@@ -17,7 +18,10 @@ $(window).ready( function() {
 });
 
 /**
-* 
+* get the data from the database via ajax
+* @param id => id of the canvas as String (i.e. canvas-statistic-1)
+* @param type => the type of the chart (i.e. horizontalBar or line)
+* @param limit => limit as integer. Is taken from the userinput
 **/
 function fillChart( id, type, limit) {
     var urls = new Array,
@@ -41,6 +45,9 @@ function fillChart( id, type, limit) {
 
 }
 
+/**
+* creates a random colour
+**/
 function getRandomColour() {
     var letters = '0123456789ABCDEF'.split('');
     var colour = '#';
@@ -50,6 +57,9 @@ function getRandomColour() {
     return colour+"66";
 }
 
+/**
+* creates an array of colours for the bars and lines in the charts
+**/
 function createColourArray( arr ) {
     var colours = new Array;
     $.each( arr, function() {
@@ -58,17 +68,25 @@ function createColourArray( arr ) {
     return colours;
 }
 
+/**
+* creates a new bar chart with the data from the methods above
+* @param id_canvas  => id of the canvas as string. Inherited from fillChart()
+* @param type       => type of the chart as string. Also inherited from fillChart()
+* @param urls       => array with the names of the websites. Created in method fillChart()
+* @param values     => array with the values for the names of the website. Created in method fillChart()
+**/
 function buildChart( id_canvas, type, urls, values ) {
     var id = document.getElementById(id_canvas),
         ctx = id.getContext('2d'),
         colours = createColourArray( urls );
 
-    //empty the canvas before adding it
+    //empty the canvas before creating it from scratch
     if(window.myChart) {
         window.myChart.destroy();
     }
 
-    id.height = urls.length*20;
+    //set height of the canvas dynamically
+    id.height = urls.length * 20;
 
     myChart = new Chart(ctx, {
         type: type,
