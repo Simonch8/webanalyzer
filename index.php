@@ -1,4 +1,10 @@
 <?php
+/**
+* @author Jannis Viol
+* @version 1.0
+* @date 5.12.2017
+* @purpose Main page with the chart
+**/
     require_once "php/functions.php";
     require_once "php/formhandler.php";
 ?>
@@ -11,7 +17,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Logo Nav - Start Bootstrap Template</title>
+    <title>Webanalyzer</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img\icon48.png">
+
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

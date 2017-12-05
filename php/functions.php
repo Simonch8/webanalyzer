@@ -1,4 +1,10 @@
 <?php
+/**
+* @author Jannis Viol
+* @version 1.0
+* @date 5.12.2017
+* @purpose
+**/
 	require_once("conn.php");
 
 	function createUrlList() {

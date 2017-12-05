@@ -3,7 +3,8 @@
 * This class handles all requests from the plugin and the backend when something has to be
 * done with the database. E.g. select, delete, create etc.
 * @author   Raphael Hänni
-* @version  v1.0.0
+* @version  v1.4.0
+* @date 5.20.2017
 **/
 class Connector {
 

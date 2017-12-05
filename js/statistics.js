@@ -1,3 +1,11 @@
+/**
+* @author Raphael Hänni
+* @version 2.0
+* @date 5.12.2017
+* @purpose create and update the charts
+**/
+
+//Global scope variables
 var myChart;
 
 //Excecutes when the window finished loading

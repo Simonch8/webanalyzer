@@ -1,4 +1,10 @@
 <?php
+/**
+* @author Jannis Viol
+* @version 1.0
+* @date 5.12.2017
+* @purpose add and delete sites from the blacklist
+**/
 	require_once "conn.php";
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
