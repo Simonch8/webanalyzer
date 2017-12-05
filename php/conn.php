@@ -263,7 +263,7 @@ class Connector {
     public function getMostVisited() {
         $result = array();
 
-        $query = "SELECT u.url, COUNT(c.fk_url) AS calls FROM urls u JOIN calls c ON ( u.id_url = c.fk_url ) GROUP BY c.fk_url ORDER BY calls DESC";
+        $query = "SELECT u.url, COUNT(c.fk_url) AS calls FROM urls u JOIN calls c ON ( u.id_url = c.fk_url ) WHERE u.isBlacklist LIKE 0 GROUP BY c.fk_url ORDER BY calls DESC";
         $data = $this->conn->query($query);
         while( $row = $data->fetch_assoc() ) {
             array_push( $result, $row );
