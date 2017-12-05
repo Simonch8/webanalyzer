@@ -4,10 +4,12 @@ Allow from env=noauth
 Deny from all
 Satisfy any
 
+<FilesMatch "blacklist.php">
 AuthType Basic
 AuthName "View Statistics"
 AuthUserFile C:/xampp/htdocs/Webanalyzer/.htpasswd
 Require valid-user
+</FilesMatch>
 
 <Files ~ "\.config$">
     Order allow,deny
