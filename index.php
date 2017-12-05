@@ -60,7 +60,7 @@
           createUrlList();
         ?>
         <label>Write down a url u want to add to the blacklist.</label>
-        <div id="inputs"><p><input class="form-control" type="text" pattern="[A-Za-z0-9\-*]+\.[a-z]{2,3}$" name="url0" id="url0" /></p></div>
+        <div id="inputs"><p><input class="form-control" type="text" pattern="[A-Za-z0-9\-*]+\.[a-z]{2,3}$" placeholder="z.B. google.ch" name="url0" id="url0" /></p></div>
         <p><input type="button" name="addInput" id="addInput" class="btn btn-info" value="Add another URL" /></p>
         <p><input type="submit" id="submit" class="btn btn-success" value="Submit" /></p>
       </form>
